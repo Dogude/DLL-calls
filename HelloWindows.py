@@ -80,7 +80,7 @@ def my_wnd_proc(hwnd, msg, wparam, lparam):
     return user32.DefWindowProcW(hwnd, msg, wparam, lparam)
 
 wc.lpfnWndProc = my_wnd_proc
-# from wchar_t* to python requires a ffi.new
+# from python to wchar_t*  requires a ffi.new
 wc.lpszClassName = to_wide_char("myclass")
 wc.hInstance = ffi.NULL
 wc.style = 0x0003
@@ -92,7 +92,7 @@ def print_number(number):
 
 hwnd = user32.CreateWindowExW(0,
                               wc.lpszClassName,
-                              "Hello Python", # Directly pass python str object to wchar_t*
+                              to_wide_char("Hello Python"),
                               (0x00000000 | 0x00C00000 | 0x00080000 | 0x00040000 | 0x00020000 | 0x00010000),
                                0x80000000, 0x80000000, 800 , 600 ,
                                ffi.NULL , ffi.NULL,wc.hInstance,ffi.NULL
@@ -105,15 +105,13 @@ button_text = "Click Me!"
 button_class = "BUTTON"
 
 h_button = user32.CreateWindowExW(
-    0, button_class, button_text,
+    0, to_wide_char(button_class), to_wide_char(button_text),
     button_style,
     50, 50, 100, 30,  # x, y, width, height
     hwnd,             # Parent is your main window
     ffi.cast("void *", 101), # This is the Button ID (101)
     ffi.NULL, ffi.NULL
 )
-
-
 
 msg = ffi.new("MSG *")
 while user32.GetMessageW(msg, ffi.NULL, 0, 0):
