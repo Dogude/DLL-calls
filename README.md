@@ -11,6 +11,7 @@ These are experiments about calling low level system functions
 * Python script that uses cffi for C declarations for Windows types
 * then shows how to pass a pointer, integer, wide char, callback functions(WNDPROC) to other functions
 * Creates a Win32 Window and Button inside it.
+<img width="536" height="294" alt="image" src="https://github.com/user-attachments/assets/a62dd12a-b7a6-431b-8da2-142e8e24fe5a" />
 
 # HelloSDL3.py
 * Python script that uses ctypes for loading sdl3.dll
