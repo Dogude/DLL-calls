@@ -16,6 +16,8 @@ These are experiments about calling low level system functions
 * Python script that uses ctypes for loading sdl3.dll
 * and also shows how to fill the fields according to functions return value and parameters
 * Finally creates a blank sdl3 window
+<img width="797" height="244" alt="image" src="https://github.com/user-attachments/assets/23f09f0c-99b6-439d-82fc-7065beef263d" />
+
 
 # RegisterClass.py
 * Python script uses ctypes for filling WNDCLASSA structure
