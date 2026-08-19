@@ -1,13 +1,11 @@
-from ctypes import windll , WinDLL, c_char_p, c_void_p, c_int, c_uint, c_uint8 , c_ulong , byref ,c_uint32
-from ctypes import Structure, WINFUNCTYPE, POINTER, create_string_buffer
-import threading
-import asyncio
+from ctypes import windll , WinDLL, c_char_p, c_void_p, c_int, c_uint, c_uint8 , c_ulong ,c_uint32
+from ctypes import Structure, POINTER, create_string_buffer
 
-sdl = WinDLL(r"C:\Users\karad\OneDrive\Belgeler\py\SDL3.dll")
+sdl = WinDLL(r"SDL3.dll")
 
 buffer = create_string_buffer(256)
 
-windll.kernel32.GetModuleFileNameA(buffer)
+windll.kernel32.GetModuleFileNameA(None,buffer,256)
 
 print(buffer.value)
 
@@ -17,11 +15,9 @@ ver = sdl.SDL_GetVersion()
 
 sdl.SDL_Log.argtype = [c_char_p,c_int]
 
-sdl.SDL_Log(b"%d\n",1)
+sdl.SDL_Log(b"%d",3)
 
 print(f"SDL Version: {ver}")
-
-exit()
 
 sdl.SDL_Init.argtype = [c_uint32]
 
@@ -54,7 +50,6 @@ sdl.SDL_CreateRenderer.restype = c_void_p
 
 renderer = sdl.SDL_CreateRenderer(window, None, 0)
 
-
 sdl.SDL_SetRenderDrawColor.argtypes = [c_void_p, c_uint8, c_uint8, c_uint8, c_uint8]
 sdl.SDL_SetRenderDrawColor.restype = c_int
 
@@ -67,23 +62,20 @@ sdl.SDL_RenderPresent.restype = None
 running = True
 
 while running:
-    while sdl.SDL_PollEvent(byref(event)):
+    while sdl.SDL_PollEvent(event):
         if event.type == SDL_QUIT:
             running = False
        
-    sdl.SDL_SetRenderDrawColor(renderer, 0, 128, 55, 255)  # mavi
+    sdl.SDL_SetRenderDrawColor(renderer, 0, 128, 55, 255)
     sdl.SDL_RenderClear(renderer)
     sdl.SDL_RenderPresent(renderer)
         
-
 sdl.SDL_DestroyRenderer.argtypes = [c_void_p]
 sdl.SDL_DestroyRenderer.restype = None
 sdl.SDL_DestroyRenderer(renderer)
-
 
 sdl.SDL_DestroyWindow.argtypes = [c_void_p]
 sdl.SDL_DestroyWindow.restype = None
 sdl.SDL_DestroyWindow(window)
 
 sdl.SDL_Quit()
-
