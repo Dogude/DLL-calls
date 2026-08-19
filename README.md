@@ -7,7 +7,7 @@ These are experiments about calling low level system functions
 * shows how to call a function from these .dlls
 * also writes macro for sprintf and messagebox combination
 * Compile this code sdl3 must be placed same directory of output executable and requires a Flat Assembler
-* From Command Line : fasm.exe HelloSDL3.asm
+* ``` fasm.exe HelloSDL3.asm ```
 
 # HelloWindows.py
 * Python script that uses cffi for C declarations for Windows types
