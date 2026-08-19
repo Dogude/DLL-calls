@@ -109,7 +109,7 @@ h_button = user32.CreateWindowExW(
     button_style,
     50, 50, 100, 30,  # x, y, width, height
     hwnd,             # Parent is your main window
-    101, # This is the Button ID (101)
+    ffi.cast("void *", 101), # This is the Button ID (101)
     ffi.NULL, ffi.NULL
 )
 
