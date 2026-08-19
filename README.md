@@ -17,5 +17,9 @@ These are experiments about calling low level system functions
 * and also shows how to fill the fields according to functions return value and parameters
 * Finally creates a blank sdl3 window
 
+# RegisterClass.py
+* Python script uses ctypes for filling WNDCLASSA structure
+* then passes Address of WNDCLASSA to RegisterClassA
+* also shows how to declare a windows structure and how to fill it
 
 
